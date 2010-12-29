@@ -1,0 +1,41 @@
+<!DOCTYPE html> <title>WebSocket Test Page</title> 
+
+<html>
+<head>
+
+<script>
+  var log = function(s) { if (document.readyState !== "complete") {
+      log.buffer.push(s); } else {
+      document.getElementById("output").innerHTML += (s + "\n");
+    } log.buffer = [];
+  }
+  url = "ws://localhost:8080/";
+  w = new WebSocket(url); 
+  w.onopen = function() {
+    log("open"); 
+    w.send("thank you for accepting this WebSocket request");
+    alert("yay, the server accepted");
+    } 
+  w.onmessage = function(e) {
+      log(e.data);
+  } 
+  w.onclose = function(e) {
+      alert("damn, server closed our shit");
+      log("closed");
+  }
+  
+  window.onload = function() { log(log.buffer.join("\n")); document.getElementById("sendButton").onclick = function() {
+      w.send(document.getElementById("inputMessage").value);
+  } 
+  </script>
+</head>
+
+
+<body>
+
+  <input type="text" id="inputMessage" value="Hello, WebSocket!"><button id="sendButton">Send</button>
+    <pre id="output"></pre>
+  
+  
+  </body>
+</html>

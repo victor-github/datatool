@@ -1,0 +1,152 @@
+<html>
+  <head>
+  <script type="text/javascript"
+  src="scripts/jquery-1.4.3.js"></script>
+
+  <script type="text/javascript">
+   
+   var filterCount = 0; //global var keeping track of how many filters we added
+
+   $(function() {
+
+
+
+
+      $('#addFilterButton').click(function() {
+        var filterItem = $('<div>') //create our own new DIV for new filter, with its own suffix (id-like) and data pulled from filterChooser, etc
+          .addClass('filterItem') //we call its class filterItem
+          .appendTo('#filterPane') //adds it to the filterPane
+          .data('suffix','.' + (filterCount++))
+          .attr('name', 'testing');
+
+          $('div.template.filterChooser') //endows the newly-created filter with 'filterChooser', containing field type dropdown
+          .children().clone().appendTo(filterItem) //appends the CONTENTS (children) of the filterChooser DIV to the filterItem DIV
+          .trigger('adjustName'); //triggers our custom event below
+      });
+
+
+        
+      //custom event on all name attributes of class filterItem
+
+       $('.filterItem[name]').live('adjustName',function(){ //endows all filterItems with a custom event to set the suffix
+        $('#resultsPane').append('<div>hello</div>');
+
+ 
+        var suffix = $(this).closest('.filterItem').data('suffix'); //the callback gets the suffix of its filterItem
+        if (/(\w)+\.(\d)+$/.test($(this).attr('name'))) return;
+        $(this).attr('name',$(this).attr('name')+suffix); //sets the filterItem's name attribute to whatever it has already plus the suffix
+       });
+
+       $('select.filterChooser').live('change',function(){
+        var filterType = $(':selected',this).attr('data-filter-type');
+        var filterItem = $(this).closest('.filterItem');
+        $('.qualifier',filterItem).remove();
+        $('div.template.'+filterType)
+        .children().clone().addClass('qualifier')
+        .appendTo(filterItem)
+        .trigger('adjustName');
+        $('option[value=""]',this).remove();
+        });
+
+       $('button.filterRemover').live('click', function() {
+           $(this).closest('div.filterItem').remove();
+       });
+
+      
+       //get the results and populate results pane with Ajax
+       $('#filtersForm').submit(function(){
+           $('#resultsPane').load('applyFilters',$('#filtersForm').serializeArray());
+           return false;
+       });
+
+      //validation
+       $('input.numeric').live('keypress',function(event){
+           if (event.which < 48 || event.which > 57) return false;
+       });
+
+
+    });
+
+
+ </script>
+    
+  </head>
+
+  <body>
+
+    <div id="pageContent">
+      <h1>Dat/a/SK</h1>
+      <h2>Filtering</h2>
+      
+      <form id="filtersForm" action="/fetchFilteredResults" method="post">
+        <fieldset id="filtersPane">
+          <legend>Filters</legend>
+          <div id="filterPane"></div>
+          <div class="buttonBar">
+            <button type="button" id="addFilterButton">Add Filter</button>
+            <button type="submit" id="applyFilterButton">Apply Filters</button>
+          </div>
+        </fieldset>
+
+        <div id="resultsPane">
+          <p>
+          <span class="none">No results displayed</span>
+        </div>
+      </form>
+    </div>
+
+    <!-- hidden templates -->
+    <div id="templates" style="visibility:hidden"> <!--Encloses and hides all templates--> <!--style="visibility:hidden"-->
+
+    <!--Defines the filterChooser template-->
+        <div class="template filterChooser">
+            <button type="button" class="filterRemover" title="Remove this filter">X</button>
+
+            <select name="filter" class="filterChooser" title="Select a property to filter">
+              <option value="" data-filter-type="" selected="selected">
+              -- choose a filter --</option>
+              <option value="title" data-filter-type="stringMatch">Item Title</option>
+              <option value="category" data-filter-type="stringMatch">Category
+              </option>
+              <option value="binder" data-filter-type="numberRange">Binder</option>
+              <option value="release" data-filter-type="dateRange">Release Date
+              </option>
+              <option value="viewed" data-filter-type="boolean">Viewed?</option>
+            </select>
+
+        </div>
+
+        <!--filter types-->
+        <div class="template stringMatch">
+            <select name="stringMatchType">
+                <option value="*">contains</option>
+                <option value="^">starts with</option>
+                <option value="$">ends with</option>
+                <option value="=">is exactly</option>
+            </select>
+            <input type="text" name="term"/>
+        </div>
+
+        <div class="template numberRange">
+            <input type="text" name="numberRange1" class="numeric"/> <span>through</span>
+            <input type="text" name="numberRange2" class="numeric"/>
+        </div>
+
+        <div class="template dateRange">
+            <input type="text" name="dateRange1" class="dateValue"/>
+            <span>through</span>
+            <input type="text" name="dateRange2" class="dateValue"/>
+        </div>
+        
+        <div class="template boolean">
+            <input type="radio" name="booleanFilter" value="true" checked="checked"/>
+            <span>Yes</span>
+            <input type="radio" name="booleanFilter" value="false"/> <span>No</span>
+        </div>
+        <!--end filter types-->
+
+        <!-- more templates go here -->
+    </div>
+
+  </body>
+</html>

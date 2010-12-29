@@ -1,0 +1,226 @@
+       <script type="text/javascript">
+  
+            var fieldCount = 1; //global var keeping track of how many fields we added
+            
+            //defines function to be invoked when we click [+] to add field
+            function addField() {
+
+                //create fieldItem div (contains field name, field value)
+                var fieldItem = $('<div>').addClass('fieldItem').appendTo('#fields_div') //made sure you append it to our main div
+                .data('suffix', '.' + (fieldCount++));
+
+                //now pull field from its hidden template and add it to the fieldItem div above
+                $('div.template.fieldChooser').children().clone().appendTo(fieldItem).trigger('adjustName'); //trigger custom event for updating field count
+                fieldItem.bind('mouseover', mouseOverFieldItem);
+
+                function mouseOverFieldItem(event) {
+                    $('button.removeFieldButton').appendTo(fieldItem);
+
+                    $('button.removeFieldButton').live('click', function() {
+                        button_clone = $(this).clone();
+                        $(this).closest('div.fieldItem').remove();
+                        $(this).appendTo('#removeFieldButtonDiv'); //before removing field, add back to the hidden template area
+                    });
+                }
+                //alert ("name" + fieldItem.data('suffix'));
+                //return "name" + fieldItem.data('suffix');//return the attribute name of this thing
+                return fieldItem;
+
+            }; //addField
+
+            //api
+            function loadDataTypeTags() {
+
+                $('#datatype_tags').bind('populateTags', function(event, returned_tags) {
+                      args = Array.prototype.slice.call(arguments);//convert to array
+                      tags = args.slice(1,arguments.length); //take only last part (tags) since first one is the event
+                      $("#datatype_tags").autocomplete(tags, {
+                                                      width: 320,
+                                                      max: 4,
+                                                      highlight: false,
+                                                      multiple: true,
+                                                      multipleSeparator: " ",
+                                                      scroll: true,
+                                                      scrollHeight: 300
+                                                    })
+                    });
+
+                $.ajax({
+                    url: '/datatypes/tags/', //api call url
+                    success: function(returned_tags) {//
+                       $("#datatype_tags").trigger('populateTags', returned_tags);
+                    }
+                })
+            }
+
+            function loadDataTypeNames() {
+
+                $('#datatype_name').bind('populateNames', function(event, returned_names) {
+                      args = Array.prototype.slice.call(arguments);//convert to array
+                      names = args.slice(1,arguments.length); //take only last part (tags) since first one is the event
+                      $("#datatype_name").autocomplete(names);
+                });
+
+                $.ajax({
+                    url: '/datatypes/names', //api call url
+                    success: function(returned_names) {
+                            $("#datatype_name").trigger('populateNames', returned_names);
+                    }
+                })
+            }
+
+
+
+            function parseAndPopulate(datatype_arg) {
+              
+              if (datatype_arg) //if something was passed as the argument
+                my_datatype = datatype_arg;
+              else
+               my_datatype = window.datatype; 
+
+              //fields
+              removeDatatypeFields();
+              if (my_datatype.fields) {
+                window.fields_length = my_datatype.fields.length;
+                for (i = 0; i<=my_datatype.fields.length-1;i++) {
+                  addField();
+                  //.val(my_datatype.fields[i].name);
+                  //$('.fieldItem [name='+addField()+']').val(my_datatype.fields[i].name);
+                }
+              //add another for
+              }
+              $("#datatype_name").val(my_datatype.datatype_name);
+              $("#datatype_tags").val(my_datatype.tags.toString().replace(",", " "));//need to cast to string
+              $("#comments_area").val(my_datatype.comments);
+
+            }
+
+            function removeDatatypeFields() {
+              $('.fieldItem').remove();
+              window.fieldCount = 1;
+            }
+
+
+            //document ready ================================
+
+            $(document).ready(function() {
+             //replace submit on enter for datatype name field
+              //with a call to search db for datatype with given name
+              $('#datatype_name').keypress(function(e) {
+
+                      if (e.keyCode === 13) 
+                      {
+                      $.ajax({
+                          url: 'search-by-name', //api call url
+                          data: { name_value: $(this).val() },
+                          success: function(returned_datatype) {
+                            parseAndPopulate(returned_datatype);
+                          }
+                      });
+       
+                      return false; //prevent form from being submitted
+                     //$(this).closest('form').trigger('submit');
+                      }
+
+                  });
+
+
+              });
+
+            //end document ready =============================
+
+
+
+            //jQuery ready ====================================
+
+            $(function() {
+               
+                //define handler for [+] button
+                $('button.addFieldButton').click(addField);
+
+                //custom events
+                //adjust field name
+                $('.fieldItem [name]').live('adjustName', function() {
+                    var suffix = $(this).closest('.fieldItem').data('suffix');
+                    if (/(\w)+\.(\d)+$/.test($(this).attr('name'))) return;
+                    $(this).attr('name', $(this).attr('name') + suffix);
+                    //set value equal to the one from the datatype id passed (if edit mode)
+                    if (window.datatype) { 
+                      $(this).val(window.datatype.fields[$(this).closest('.fieldItem').data('suffix').substr(1)-1]);
+                    }
+                });
+        
+
+                //load data section
+                $.ajaxSetup({
+                    cache: false
+                });
+
+                loadDataTypeNames(); //get names of all datatypes 
+                if (window.datatype) {
+                  parseAndPopulate();
+                  //TODO: call to load datatype tags for this datatype
+                }
+        
+            });
+
+            //end jQuery ready ====================================
+
+
+        </script>
+    </head>
+    
+    <body>
+        <h2>
+            Define Datatype
+        </h2>
+        <form id="myForm" action="http://184.106.223.62/datatypes" method="post">
+            <div id="mandatory_fields">
+                Name:
+                <br>
+                <input id="datatype_name" type="text" name="datatype_name">
+                <br>
+                <p>
+                </p>
+                Topic:
+                <br>
+                <input id="datatype_tags" type="text" name="datatype_tags">
+                <br>
+                <input type="hidden" value="datatype" name="type">
+             </div>
+            <p>
+            </p>
+            Fields:
+            <button type="button" class="addFieldButton" title="Add new field">
+                +
+            </button>
+            <div id="fields_div">
+                <!--where fields go-->
+            </div>
+            <p>
+            </p>
+            
+            <div id="comments">
+              Comments: <br>
+              <textarea id="comments_area" name="comments_area" rows="3" cols="40"></textarea>
+            </div>
+
+            <p>
+              <input type="submit" value="Update DataType"/> 
+            </p>
+            <br>
+
+        </form>
+        <!--hidden templates-->
+        <div id="templates" style="visibility:hidden">
+            <!--individual field-->
+            <div class="template fieldChooser">
+                <input type="text" name="name" />
+            </div>
+            <div id="removeFieldButtonDiv">
+                <button type="button" class="removeFieldButton" title="Remove field">
+                    X
+                </button>
+            </div>
+        </div>
+

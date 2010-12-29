@@ -1,0 +1,174 @@
+<html>
+
+    <head>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
+        <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/lib/jquery.bgiframe.min.js"></script>
+        <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
+
+        <script type="text/javascript">
+      
+        var fieldCount = 1; //global var keeping track of how many fields we added
+        
+        //defines function to be invoked when we click [+] to add field
+        function addField() {
+
+            //create fieldItem div (contains field name, field value)
+            var fieldItem = $('<div>').addClass('fieldItem').appendTo('#fields_div') //made sure you append it to our main div
+            .data('suffix', '.' + (fieldCount++));
+
+            //now pull field from its hidden template and add it to the fieldItem div above
+            $('div.template.fieldChooser').children().clone().appendTo(fieldItem).trigger('adjustName'); //trigger custom event for updating ALL names with field counts
+
+            return "name" + fieldItem.data('suffix');//return the attribute name of this thing
+
+          }; //addField
+
+
+        //load all data by making the appropriate ajax calls to api
+        function loadData() {
+            $.ajaxSetup({
+                cache: false
+            })
+            loadDataTags();
+            loadDataTypeNames();
+        }
+
+        function loadDataTypeNames() {
+
+            $('#type').bind('populateDataTypes', function(event, returned_names) {
+                  args = Array.prototype.slice.call(arguments);//convert to array
+                  names = args.slice(1,arguments.length); //take only last part (tags) since first one is the event
+                  $("#type").autocomplete(names);
+            });
+
+            $.ajax({
+                url: '/datatypes/names', //api call url
+                success: function(returned_names) {
+                        $("#type").trigger('populateDataTypes', returned_names);
+                }
+            })
+        }
+
+
+
+        function loadDataTags() { //nothing yet 
+        }
+
+        //determine data type based on :type
+        //parse accordingly and populate form fields        
+        //TODO: for edit we will add the "datum" parameter to this
+        function parseAndPopulate(datatype) {
+         
+          //fields
+          removeDatatypeFields();
+          if (datatype.fields) {
+            for (i = 0; i<=datatype.fields.length-1;i++) {
+              newfield_id = addField();
+              field_item = $('.fieldItem [name='+newfield_id+']');
+              field_item.prev().prev().text(datatype.fields[i].name+":"); //only sibling is the label
+              field_item.next().val(datatype.fields[i].name); //set hidden input field to carry value of label (so it can be submitted by form)
+
+             }
+          }
+          //$("#datatype_tags").val(data.tags.toString().replace(",", " "));//need to cast to string
+          //$("#comments_area").val(data.comments);
+        
+        }
+
+
+       function removeDatatypeFields() {
+           $('.fieldItem').remove();
+            window.fieldCount = 1;
+       }
+
+
+       //document ready ================================
+        $(document).ready(function() {
+          loadData();
+          //replace submit on enter for datum type field with a call to search db for datatypes with given name
+          $('#type').keypress(function(e) {
+                  if (e.keyCode === 13) 
+                  {
+                  $.ajax({
+                      url: '/datatypes/search-by-name', //api call url
+                      data: { name_value: $(this).val() },
+                      success: function(returned_datatype) {
+                      window.returned_datatype = returned_datatype; 
+                      parseAndPopulate(returned_datatype);
+                      }
+                  });
+                  return false; //prevent form from being submitted
+                  }
+              });
+          })
+        //end document ready =============================
+
+        //jQuery ready ====================================
+
+        $(function() {
+
+            //custom events --- adjust field name
+            //note that this will adjust ALL names in field div which is cool:
+            //{"label.2" "hello", "name.2" "b", "label.1" "some", "name.1" "a", "type" "data", "tags" "scsacas", "type" "abcdefg"}
+            $('.fieldItem [name]').live('adjustName', function() {
+                var suffix = $(this).closest('.fieldItem').data('suffix');
+                if (/(\w)+\.(\d)+$/.test($(this).attr('name'))) return;
+                $(this).attr('name', $(this).attr('name') + suffix);
+            });
+
+        });
+
+        //end jQuery ready ====================================
+
+
+        </script>
+
+  </head>
+
+  <body>
+        <h2>
+          Data Item
+        </h2>
+        <form id="myForm" action="/data" method="post"> <!--was: http://IP/data -->
+          <div id="mandatory_fields"> 
+                Topic:
+                <br>
+                <input id="type" type="text" name="type"> <!--was: datatype_name-->
+                <br>
+                <p>
+                </p>
+                Tags:
+                <br>
+                <input id="tags" type="text" name="tags">
+                <br>
+                <input type="hidden" name="_id" value=""> <!--will be populated with mongo object id in case of edits-->
+            </div>
+            <p>
+            </p>
+            <div id="fields_div">
+            </div>
+            <p>
+            </p>
+
+            <p>
+              <input type="submit" value="Update"/>
+            </p>
+            <br>
+
+        </form>
+
+        <!--hidden templates-->
+        <div id="templates" style="visibility:hidden">
+            <!--individual field-->
+            <div class="template fieldChooser">
+                <label for="name"> </label> <br/>
+                <input type="text" name="name" />
+                <input type="hidden" name="label" value=""> <!--its value will be set by jQuery-->
+            </div>
+        </div>   
+
+  </body>
+
+</html>

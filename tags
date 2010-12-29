@@ -1,0 +1,156 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+VALID-CHARS	src/datatool/nov13-db.clj	/^(def VALID-CHARS (map char (concat (range 48 58) (range 65 91) (range 97 123))))$/;"	f
+add-item!	src/datatool/db.clj	/^(defn add-item! [collection mongo-item]$/;"	f
+add-item!	src/datatool/nov19-db.clj	/^(defn add-item! [collection mongo-item]$/;"	f
+app	src/datatool/api.clj	/^(def app$/;"	f
+app	src/datatool/core.clj	/^(def app$/;"	f
+app	src/datatool/core1.clj	/^(def app$/;"	f
+app	src/datatool/nov11-api.clj	/^(def app$/;"	f
+app	src/datatool/nov13-api.clj	/^(def app$/;"	f
+app	src/datatool/nov15-api.clj	/^(def app$/;"	f
+app	src/datatool/nov19-api.clj	/^(def app$/;"	f
+app	src/datatool/nov4-api.clj	/^(def app$/;"	f
+app	src/datatool/old_core.clj	/^(def app$/;"	f
+app	src/datatool/workingcore.clj	/^(def app$/;"	f
+authenticate	src/datatool/api.clj	/^(defn authenticate [request]$/;"	f
+data-path	src/datatool/api.clj	/^(defn data-path$/;"	f
+data-path	src/datatool/nov19-api.clj	/^(defn data-path$/;"	f
+datatype-added-view-output	src/datatool/api.clj	/^(defn datatype-added-view-output []$/;"	f
+datatype-added-view-output	src/datatool/nov11-api.clj	/^(defn datatype-added-view-output []$/;"	f
+datatype-added-view-output	src/datatool/nov13-api.clj	/^(defn datatype-added-view-output []$/;"	f
+datatype-added-view-output	src/datatool/nov15-api.clj	/^(defn datatype-added-view-output []$/;"	f
+datatype-added-view-output	src/datatool/nov19-api.clj	/^(defn datatype-added-view-output []$/;"	f
+datatype-added-view-output	src/datatool/nov4-api.clj	/^(defn datatype-added-view-output []$/;"	f
+datatype-path	src/datatool/api.clj	/^(defn datatype-path$/;"	f
+datatype-path	src/datatool/nov11-api.clj	/^(defn datatype-path$/;"	f
+datatype-path	src/datatool/nov13-api.clj	/^(defn datatype-path$/;"	f
+datatype-path	src/datatool/nov15-api.clj	/^(defn datatype-path$/;"	f
+datatype-path	src/datatool/nov19-api.clj	/^(defn datatype-path$/;"	f
+datatype-path	src/datatool/nov4-api.clj	/^(defn datatype-path$/;"	f
+date-to-string	src/datatool/util.clj	/^(defn date-to-string [#^java.lang.Long timestamp]$/;"	f
+db-delete-by-id!	src/datatool/nov11-db.clj	/^(defn db-delete-by-id! [type id]$/;"	f
+db-delete-by-id!	src/datatool/nov13-db.clj	/^(defn db-delete-by-id! [type id]$/;"	f
+db-delete-item!	src/datatool/nov11-db.clj	/^(defn db-delete-item! [collection mongo-item]$/;"	f
+db-delete-item!	src/datatool/nov13-db.clj	/^(defn db-delete-item! [collection mongo-item]$/;"	f
+db-drop-all-items!	src/datatool/nov11-db.clj	/^(defn db-drop-all-items! [collection]$/;"	f
+db-drop-all-items!	src/datatool/nov13-db.clj	/^(defn db-drop-all-items! [collection]$/;"	f
+db-find-all-datatypes	src/datatool/nov11-db.clj	/^(defn db-find-all-datatypes []$/;"	f
+db-find-all-datatypes	src/datatool/nov13-db.clj	/^(defn db-find-all-datatypes []$/;"	f
+db-get-all-tags	src/datatool/nov11-db.clj	/^(defn db-get-all-tags []$/;"	f
+db-get-all-tags	src/datatool/nov13-db.clj	/^(defn db-get-all-tags []$/;"	f
+db-mongo-add-item!	src/datatool/nov11-db.clj	/^(defn db-mongo-add-item! [collection mongo-item]$/;"	f
+db-mongo-add-item!	src/datatool/nov13-db.clj	/^(defn db-mongo-add-item! [collection mongo-item]$/;"	f
+db-search-by-name	src/datatool/nov11-db.clj	/^(defn db-search-by-name [type name]$/;"	f
+db-search-by-name	src/datatool/nov13-db.clj	/^(defn db-search-by-name [type name]$/;"	f
+db-update-item!	src/datatool/nov11-db.clj	/^(defn db-update-item! [type fe-item]$/;"	f
+db-update-item!	src/datatool/nov13-db.clj	/^(defn db-update-item! [type fe-item]$/;"	f
+delete-by-id!	src/datatool/db.clj	/^(defn delete-by-id! [type id]$/;"	f
+delete-by-id!	src/datatool/nov19-db.clj	/^(defn delete-by-id! [type id]$/;"	f
+development?	src/datatool/old_core.clj	/^(def development?$/;"	f
+emit-json	src/datatool/api.clj	/^(defn- emit-json$/;"	f
+emit-json	src/datatool/nov11-api.clj	/^(defn- emit-json$/;"	f
+emit-json	src/datatool/nov13-api.clj	/^(defn- emit-json$/;"	f
+emit-json	src/datatool/nov15-api.clj	/^(defn- emit-json$/;"	f
+emit-json	src/datatool/nov19-api.clj	/^(defn- emit-json$/;"	f
+emit-json	src/datatool/nov4-api.clj	/^(defn- emit-json$/;"	f
+endow	src/datatool/db.clj	/^(defn- endow [mongo-item]$/;"	f
+endow	src/datatool/nov19-db.clj	/^(defn- endow [mongo-item]$/;"	f
+exec	src/datatool/db.clj	/^(defmacro exec [f & args] `(~f ~@args))$/;"	f
+exec	src/datatool/nov19-db.clj	/^(defmacro exec [f & args] `(~f ~@args))$/;"	f
+fetch-with-options	src/datatool/db.clj	/^(defn fetch-with-options [options]$/;"	f
+fetch-with-options	src/datatool/nov19-db.clj	/^(defn fetch-with-options [options]$/;"	f
+generateSampleDatatypes	src/datatool/nov13-db.clj	/^(defn generateSampleDatatypes [number]$/;"	f
+generateSampleDatatypes	src/datatool/util.clj	/^(defn generateSampleDatatypes [number]$/;"	f
+get-column-names	src/datatool/db.clj	/^(defmethod get-column-names "data" [params]$/;"	f
+get-column-names	src/datatool/db.clj	/^(defmulti get-column-names$/;"	f
+get-mongo-hash	src/datatool/db.clj	/^(defmethod get-mongo-hash "datatype" [fe]$/;"	f
+get-mongo-hash	src/datatool/db.clj	/^(defmethod get-mongo-hash :default [fe]$/;"	f
+get-mongo-hash	src/datatool/db.clj	/^(defmulti get-mongo-hash $/;"	f
+get-mongo-hash-datatype	src/datatool/db.clj	/^(defn get-mongo-hash-datatype [datatype-fe]$/;"	f
+get-mongo-hash-datatype	src/datatool/nov19-db.clj	/^(defn get-mongo-hash-datatype [datatype-fe]$/;"	f
+get-mongo-hash-datum	src/datatool/db.clj	/^(defn get-mongo-hash-datum [datum-fe]$/;"	f
+get-mongo-hash-datum	src/datatool/nov19-db.clj	/^(defn get-mongo-hash-datum [datum-fe]$/;"	f
+get_mongo_hash	src/datatool/nov11-db.clj	/^(defn get_mongo_hash [type item]$/;"	f
+get_mongo_hash	src/datatool/nov13-db.clj	/^(defn get_mongo_hash [type item]$/;"	f
+handler	src/datatool/api.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/core.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/core1.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/nov11-api.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/nov13-api.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/nov15-api.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/nov19-api.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/nov4-api.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/old_core.clj	/^(defroutes handler$/;"	f
+handler	src/datatool/workingcore.clj	/^(defroutes handler$/;"	f
+keywordify-keys	src/datatool/db.clj	/^(defn keywordify-keys$/;"	f
+keywordify-keys	src/datatool/nov11-db.clj	/^(defn keywordify-keys$/;"	f
+keywordify-keys	src/datatool/nov13-db.clj	/^(defn keywordify-keys$/;"	f
+keywordify-keys	src/datatool/nov19-db.clj	/^(defn keywordify-keys$/;"	f
+merge-with-kw-keys	src/datatool/db.clj	/^(defn merge-with-kw-keys$/;"	f
+merge-with-kw-keys	src/datatool/nov11-db.clj	/^(defn merge-with-kw-keys$/;"	f
+merge-with-kw-keys	src/datatool/nov13-db.clj	/^(defn merge-with-kw-keys$/;"	f
+merge-with-kw-keys	src/datatool/nov19-db.clj	/^(defn merge-with-kw-keys$/;"	f
+mongo-drop-all-items!	src/datatool/nov11-db.clj	/^(defn mongo-drop-all-items! [collection]$/;"	f
+mongo-drop-all-items!	src/datatool/nov13-db.clj	/^(defn mongo-drop-all-items! [collection]$/;"	f
+mongo-find-all	src/datatool/nov11-db.clj	/^(defn mongo-find-all [type]$/;"	f
+mongo-find-all	src/datatool/nov13-db.clj	/^(defn mongo-find-all [type]$/;"	f
+mongo-search-by-name	src/datatool/nov11-db.clj	/^(defn mongo-search-by-name [type name]$/;"	f
+mongo-search-by-name	src/datatool/nov13-db.clj	/^(defn mongo-search-by-name [type name]$/;"	f
+parse-input	src/datatool/old_core.clj	/^(defn parse-input [a b]$/;"	f
+parse-input	src/datatool/workingcore.clj	/^(defn parse-input [a b]$/;"	f
+production?	src/datatool/old_core.clj	/^(def production?$/;"	f
+random-char	src/datatool/nov13-db.clj	/^(defn random-char [] (nth VALID-CHARS (rand (count VALID-CHARS))))$/;"	f
+random-char	src/datatool/util.clj	/^(defn random-char [] (nth validChars (rand (count validChars))))$/;"	f
+random-int	src/datatool/nov13-db.clj	/^(defn random-int [start end] (nth (range (start (+ 1 end))) (+ start (rand (- end start)))))$/;"	f
+random-int	src/datatool/util.clj	/^(defn random-int [start end] (nth (range (start (+ 1 end))) (+ start (rand (- end start)))))$/;"	f
+random-str	src/datatool/nov13-db.clj	/^(defn random-str [length] (apply str (take length (repeatedly random-char))))$/;"	f
+random-str	src/datatool/util.clj	/^(defn random-str [length] (apply str (take length (repeatedly random-char))))$/;"	f
+random-vector-of-strings	src/datatool/nov13-db.clj	/^(defn random-vector-of-strings [vector-length-upto string-length-from string-length-to] ;;e.g. random-vector-of-strings 5 3 8, e.g. ["9HO0" "ge9D7H" "Swiovua"]$/;"	f
+random-vector-of-strings	src/datatool/util.clj	/^(defn random-vector-of-strings [vector-length-upto string-length-from string-length-to] ;;e.g. random-vector-of-strings 5 3 8, e.g. ["9HO0" "ge9D7H" "Swiovua"]$/;"	f
+search-by-datatype-name	src/datatool/db.clj	/^(defn search-by-datatype-name [name]$/;"	f
+search-by-datatype-name	src/datatool/nov19-db.clj	/^(defn search-by-datatype-name [name]$/;"	f
+update-datatype-with-fe-item!	src/datatool/db.clj	/^(defn update-datatype-with-fe-item! [datatype-fe]$/;"	f
+update-datatype-with-fe-item!	src/datatool/nov19-db.clj	/^(defn update-datatype-with-fe-item! [datatype-fe]$/;"	f
+update-datum-with-fe-item!	src/datatool/db.clj	/^(defn update-datum-with-fe-item! [datum-fe]$/;"	f
+update-datum-with-fe-item!	src/datatool/nov19-db.clj	/^(defn update-datum-with-fe-item! [datum-fe]$/;"	f
+uuid	src/datatool/db.clj	/^(defn- uuid []$/;"	f
+uuid	src/datatool/nov11-db.clj	/^(defn- uuid []$/;"	f
+uuid	src/datatool/nov13-db.clj	/^(defn- uuid []$/;"	f
+uuid	src/datatool/nov19-db.clj	/^(defn- uuid []$/;"	f
+validChars	src/datatool/util.clj	/^(def validChars (map char (concat (range 48 58) (range 65 91) (range 97 123))))$/;"	f
+view-input	src/datatool/core.clj	/^(defn view-input []$/;"	f
+view-input	src/datatool/core1.clj	/^(defn view-input []$/;"	f
+view-input	src/datatool/old_core.clj	/^(defn view-input []$/;"	f
+view-input	src/datatool/workingcore.clj	/^(defn view-input []$/;"	f
+view-layout	src/datatool/api.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/core.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/core1.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/nov11-api.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/nov13-api.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/nov15-api.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/nov19-api.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/nov4-api.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/old_core.clj	/^(defn view-layout [& content]$/;"	f
+view-layout	src/datatool/workingcore.clj	/^(defn view-layout [& content]$/;"	f
+view-output	src/datatool/old_core.clj	/^(defn view-output [a b sum]$/;"	f
+view-output	src/datatool/workingcore.clj	/^(defn view-output [a b sum]$/;"	f
+view-output-datatypes-list	src/datatool/nov11-api.clj	/^(defn view-output-datatypes-list [datatypes]$/;"	f
+view-output-datatypes-list	src/datatool/nov13-api.clj	/^(defn view-output-datatypes-list [datatypes]$/;"	f
+view-output-datatypes-list	src/datatool/nov15-api.clj	/^(defn view-output-datatypes-list [datatypes]$/;"	f
+view-output-datatypes-list	src/datatool/nov4-api.clj	/^(defn view-output-datatypes-list [datatypes]$/;"	f
+view-output-nice-list	src/datatool/api.clj	/^(defn view-output-nice-list [datatypes]$/;"	f
+view-output-nice-list	src/datatool/nov11-api.clj	/^(defn view-output-nice-list [datatypes]$/;"	f
+view-output-nice-list	src/datatool/nov13-api.clj	/^(defn view-output-nice-list [datatypes]$/;"	f
+view-output-nice-list	src/datatool/nov15-api.clj	/^(defn view-output-nice-list [datatypes]$/;"	f
+view-output-nice-list	src/datatool/nov19-api.clj	/^(defn view-output-nice-list [datatypes]$/;"	f
+view-output-nice-list	src/datatool/nov4-api.clj	/^(defn view-output-nice-list [datatypes]$/;"	f
+with-guid	src/datatool/nov11-api.clj	/^(defn with-guid$/;"	f
+with-guid	src/datatool/nov13-api.clj	/^(defn with-guid$/;"	f
+with-guid	src/datatool/nov15-api.clj	/^(defn with-guid$/;"	f
+with-guid	src/datatool/nov19-api.clj	/^(defn with-guid$/;"	f
+with-guid	src/datatool/nov4-api.clj	/^(defn with-guid$/;"	f
