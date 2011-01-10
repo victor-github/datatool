@@ -1,6 +1,21 @@
-Datatool: a generalized system for storing homogenous datatypes
+The tool addresses the need of storing and managing visually data online of different types
+(heterogenous data).
 
+An example scenario would be an eCommerce system. An admin user (the owner of the store)  would define, at runtime, the types of products supported. There is subsequently built in ability for store users to filter and tag various individual products.
 
-Think De.li.cio.us. Now think that, instead of just storing bookmarks, you can store ARBITRARY (and user-defined) datatypes - emails, to-do notes, etc. Think OPEN SOURCE. This is Datatool.
+As another example, a ticketing system can be built by specifying the types of issues and their fields.
+
+In all these cases, data can be tagged and aggreggated. Most importantly, data of various types can be handled in a uniform way. An example when this can be useful is combining emails, contacts and bookmarks in a single interface, as opposed to having to visit individual sites (gmail, delicious, etc). Modular extensions that would communicate with 3rd party services (e.g. google API) would be developed. 
+
+Scenario examples:
+ To Do list
+ eCommerce system
+ Issue tracking
+ Contact List & Email organizer 
+
+Front-end: jQuery, jQuery-grid
+Backend:
+Clojure & MongoDB
+
 
 
