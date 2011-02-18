@@ -15,13 +15,9 @@
 
     var display_globals = {
       column_names : ['Name','Tags','Fields','Comments', 'Last Update']
-    } //TODO: move to backend
+    } 
 
-    //backend needs to "hold" (or infer from db): field(i.e. col)_names_for_displaying, codes of those
-    //where to hold all this shit? 1) some functions 2) Mongo and loaded only at the very beginning (will need caching) 3)some config file
-    //obviously the inferred fields can't be held anywhere, those will be generated from the db information
 
-    //when data SCHEMA and LOGIC dictates how it should be displayed, then that data has to FIRST BE RETRIEVED from the BACKEND ('rendered')
     $(function(){ 
       $("#list").jqGrid({
         url:'http://184.106.223.62/datatypes/json-for-grid',
@@ -34,19 +30,17 @@
           {name:':fields',width:200},
           {name:':comments',width:300},
           {name:':updated_at',width:130, align: 'center'}
-          //{name:'total', index:'total', width:80, align:'right'}, 
-          //{name:'note', index:'note', width:150, sortable:false} 
         ],
         pager: '#pager',
         rowNum:10,
         rowList:[10,20,30],
-        sortname: ':datatype_name', //these defaults shits also need to come from backend
-        sortorder: 'asc', //these defaults shits also need to come from backend
+        sortname: ':datatype_name', 
+        sortorder: 'asc', 
         viewrecords: true,
-        caption: 'Datatypes', //these defaults shits also need to come from backend
+        caption: 'Datatypes', 
         height: "100%",
         
-      }).navGrid('#pager', {edit:true, editfunc: function(id){ window.location="/datatypes/edit/"+id }},  //TODO: id //{view: true, del: false, editfunc: 'some'},
+      }).navGrid('#pager', {edit:true, editfunc: function(id){ window.location="/datatypes/edit/"+id }},  
 
          { //edit
              addCaption: "Add My Record Caption",
@@ -63,7 +57,7 @@
 
 
 
-        );    //prmEdit, prmAdd, prmDel, prmSearch, prmView); 
+        );    
     });
 
  

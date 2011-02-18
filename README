@@ -1,5 +1,5 @@
 The tool addresses the need of storing and managing visually data online of different types
-(heterogenous data).
+(heterogenous data). In essence, it is a Content Management System.
 
 An example scenario would be an eCommerce system. An admin user (the owner of the store)  would define, at runtime, the types of products supported. There is subsequently built in ability for store users to filter and tag various individual products.
 

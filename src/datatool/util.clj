@@ -14,13 +14,13 @@
     (into [] (for [i (range (rand vector-length-upto))] (random-str (rand-nth (range string-length-from string-length-to))) )))
 
 (defn generateSampleDatatypes [number]
-  (for [i (range number)] ;;figure out a dotimes
+  (for [i (range number)] 
     (let [name (random-str 10)
           tags (random-vector-of-strings 5 3 8) ;;["9HO0" "ge9D7H" "Swiovua"]
           fields  (map (fn [x] {:name x :type "String"} ) (random-vector-of-strings 5 2 6) )
           comments (random-str 15)
           mongo-datatype {:datatype_name name, :tags tags, :fields fields, :comments comments}]
-          (db/add-item! :datatypes mongo-datatype);;TODO: handle possible errors?
+          (db/add-item! :datatypes mongo-datatype)
           mongo-datatype
 )))
 

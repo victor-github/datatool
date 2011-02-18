@@ -18,14 +18,9 @@
     <script type="text/javascript">
 
 
-    //backend needs to "hold" (or infer from db): field(i.e. col)_names_for_displaying, codes of those
-    //where to hold all this shit? 1) some functions 2) Mongo and loaded only at the very beginning (will need caching) 3)some config file
-    //obviously the inferred fields can't be held anywhere, those will be generated from the db information
-
     function displayGrid()  {
       
       col_names = window.getColumnNames(datatype_id); //['col1_name', 'col2_name', ...]
-      //todo: move these into backend in db/get-column-names
       col_names.push("tags");
       col_names.push("updated_at");
 
@@ -42,15 +37,14 @@
         pager: '#pager',
         rowNum:10,
         rowList:[10,20,30],
-        sortname: ':updated_at', //these default shits also need to come from backend
-        sortorder: 'asc', //these default shits also need to come from backend
+        sortname: ':updated_at', 
+        sortorder: 'asc', 
         viewrecords: true,
-        caption: 'Data', //these default shits also need to come from backend
+        caption: 'Data', 
         height: "100%"
-      });//.navGrid('#pager',{parameters}, prmEdit, prmAdd, prmDel, prmSearch, prmView); 
+      });
     }
 
-    //when data SCHEMA and LOGIC dictates how it should be displayed, then that data has to FIRST BE RETRIEVED from the BACKEND ('rendered')
     $(function(){
         loadData();
 
